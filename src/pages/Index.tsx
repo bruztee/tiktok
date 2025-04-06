@@ -115,7 +115,7 @@ const Index = () => {
   };
 
   // Example Solana contract address
-  const contractAddress = "";
+  const contractAddress = "jhzS6pZZv5GgybcXKDZD5McEir1q1gLypvNSQjupump";
 
   // Function to copy contract address to clipboard
   const copyToClipboard = () => {
