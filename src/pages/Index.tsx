@@ -237,7 +237,7 @@ const Index = () => {
               
               <div className="flex items-center md:ml-4">
                 <a 
-                  href="https://t.me/your_telegram_channel" 
+                  href="https://t.me/whoami_solana" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="transition-transform duration-300 hover:scale-110 mx-2"
@@ -246,7 +246,7 @@ const Index = () => {
                 </a>
                 
                 <a 
-                  href="https://x.com/your_twitter_handle" 
+                  href="https://x.com/WhoAmi_solana" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-blue-400 transition-transform duration-300 hover:scale-110 hover:text-blue-300 mx-2"
