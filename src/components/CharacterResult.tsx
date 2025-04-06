@@ -78,7 +78,7 @@ const CharacterResult = ({ character, onClose }: CharacterResultProps) => {
           <div className="flex flex-col h-full overflow-y-auto p-6">
             <div className="text-center mb-8">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 transition-all duration-300 hover:from-blue-300 hover:via-cyan-200 hover:to-blue-300">
-                You chose {character.name}
+                {character.name}
               </h2>
             </div>
             
