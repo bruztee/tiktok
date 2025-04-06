@@ -43,12 +43,31 @@ const XIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+// Copy icon component
+const CopyIcon = ({ className }: { className?: string }) => (
+  <svg 
+    width="16" 
+    height="16" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    className={className}
+  >
+    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+  </svg>
+);
+
 const Index = () => {
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
   const [showVideo, setShowVideo] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [videoKey, setVideoKey] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
 
   const handleCharacterSelect = (character: Character) => {
     setSelectedCharacter(character);
@@ -97,6 +116,42 @@ const Index = () => {
 
   // Example Solana contract address
   const contractAddress = "BxDq6VaAixnQni9V4S2jUkAZ7C2HmWQXgwyKLy7rPJtM";
+
+  // Function to copy contract address to clipboard
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(contractAddress).then(() => {
+      setIsCopied(true);
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 2000);
+    });
+  };
+
+  // Function to truncate the contract address for different screen sizes
+  const truncateAddress = (address: string) => {
+    // For very small mobile screens
+    if (typeof window !== 'undefined' && window.innerWidth < 360) {
+      return `${address.substring(0, 4)}...${address.substring(address.length - 4)}`;
+    }
+    // For regular mobile screens
+    else if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      return `${address.substring(0, 6)}...${address.substring(address.length - 6)}`;
+    }
+    // For PC - show full address, never truncate
+    return address;
+  };
+
+  // Effect to rerender component on window resize to ensure proper truncation
+  useEffect(() => {
+    const handleResize = () => {
+      // Force a re-render when window is resized
+      setIsLoading(loading => !loading);
+      setIsLoading(loading => !loading);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div className="min-h-screen relative overflow-hidden text-white">
@@ -163,17 +218,24 @@ const Index = () => {
         {/* Solana Contract and Social Media Links Footer */}
         <div className="mt-16 mb-8 w-full">
           <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-blue-500/20 max-w-3xl mx-auto transition-all duration-300 hover:bg-black/40 hover:border-blue-500/30 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-              <div className="flex items-center gap-2">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-center items-center gap-4">
+              <div className="flex flex-col items-center md:flex-row md:items-center gap-2">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500 font-semibold">CA:</span>
-                <div className="flex items-center bg-black/50 rounded-md px-3 py-1.5 border border-blue-500/20 group transition-all duration-300 hover:bg-black/70 hover:border-blue-500/40">
-                  <span className="text-sm text-gray-300 font-mono transition-all duration-300 group-hover:text-white">
-                    {contractAddress}
+                <div 
+                  className="flex items-center justify-center bg-black/50 rounded-md px-3 py-1.5 border border-blue-500/20 group transition-all duration-300 hover:bg-black/70 hover:border-blue-500/40 cursor-pointer select-all"
+                  onClick={copyToClipboard}
+                >
+                  <span className="text-sm text-blue-400 font-mono transition-all duration-300 group-hover:text-blue-300 truncate">
+                    {truncateAddress(contractAddress)}
                   </span>
+                  <CopyIcon className="ml-2 flex-shrink-0 text-blue-400 group-hover:text-blue-300" />
+                  {isCopied && (
+                    <span className="ml-2 text-xs text-blue-300 animate-pulse">Copied!</span>
+                  )}
                 </div>
               </div>
               
-              <div className="flex items-center ml-4">
+              <div className="flex items-center md:ml-4">
                 <a 
                   href="https://t.me/your_telegram_channel" 
                   target="_blank" 
