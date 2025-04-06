@@ -1,9 +1,8 @@
-
 import React from 'react';
 
 const Header = () => {
   return (
-    <header className="relative bg-gradient-to-r from-gray-900 via-purple-900 to-blue-900 p-6 shadow-xl overflow-hidden">
+    <header className="relative bg-gradient-to-r from-gray-900 via-purple-900 to-blue-900 py-10 px-6 shadow-xl overflow-hidden">
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB4PSIwIiB5PSIwIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0id2hpdGUiIGZpbGwtb3BhY2l0eT0iMC4xIi8+PC9wYXR0ZXJuPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiLz48L3N2Zz4=')]"></div>
       </div>
@@ -16,17 +15,12 @@ const Header = () => {
       <div className="container mx-auto relative z-10">
         <div className="flex flex-col items-center justify-center">
           <div className="text-center relative">
-            <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter mb-2 drop-shadow-[0_2px_20px_rgba(138,43,226,0.5)]">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300">Choose</span>
-              <span className="relative mx-4 inline-block animate-pulse">
-                <span className="absolute -inset-2 bg-indigo-600 blur-md opacity-50 animate-ping rounded-full"></span>
-                <span className="relative text-white">your</span>
-              </span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-400">character</span>
-            </h1>
-            <p className="text-white/80 text-lg md:text-xl mt-3 max-w-xl mx-auto font-medium">
-              Be ready to rot your brain!
-            </p>
+            <div className="relative inline-block animate-pulse">
+              <div className="absolute -inset-6 bg-indigo-600 blur-md opacity-50 animate-ping rounded-full"></div>
+              <h1 className="text-4xl md:text-6xl font-black tracking-tighter pb-2 drop-shadow-[0_2px_20px_rgba(138,43,226,0.5)] relative bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400">
+                Choose your fighter
+              </h1>
+            </div>
           </div>
           
           <div className="absolute -top-10 -right-10 w-40 h-40 bg-indigo-700/20 rounded-full blur-2xl"></div>

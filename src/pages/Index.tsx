@@ -78,9 +78,9 @@ const Index = () => {
       
       <Header />
       
-      <main className="container mx-auto p-4 pt-12 relative z-10">
+      <main className="container mx-auto p-4 pt-12 pb-20 relative z-10">
         <h2 className="text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">
-          Выберите персонажа!
+          Who you like most?
         </h2>
         
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-12">
@@ -103,15 +103,6 @@ const Index = () => {
           />
         )}
       </main>
-      
-      <footer className="mt-16 py-8 relative z-10">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/90 to-blue-900/90 -z-10"></div>
-        <div className="container mx-auto px-4 text-center text-white/80">
-          <p className="text-sm">
-            © 2025 Choose your character. Все персонажи и видео принадлежат их законным владельцам.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 };

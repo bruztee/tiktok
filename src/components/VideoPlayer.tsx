@@ -91,6 +91,11 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
     }
   };
 
+  const handleVideoClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    togglePlay();
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-6" onClick={handleBackdropClick}>
       <div className="relative w-full max-w-6xl h-auto max-h-[90vh] bg-gradient-to-b from-gray-900 via-purple-900/80 to-blue-900/80 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] border border-purple-500/30 animate-fade-in">
@@ -105,15 +110,16 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 h-full max-h-[90vh] overflow-auto">
           {/* Left side - Video */}
-          <div className="relative bg-blue-900/30 h-full flex items-center justify-center">
+          <div className="relative h-full flex items-center justify-center">
             <div className="w-full h-full relative flex items-center">
               <video 
                 ref={videoRef}
-                className="w-full h-auto max-h-[80vh] object-cover"
+                className="w-full h-auto max-h-[80vh] object-cover cursor-pointer"
                 playsInline
+                onClick={handleVideoClick}
               >
                 <source src={videoSrc} type="video/mp4" />
-                Ваш браузер не поддерживает видео.
+                Your browser does not support video playback.
               </video>
               
               {/* Lighting effect over video */}
@@ -154,13 +160,15 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
           </div>
           
           {/* Right side - Character Info */}
-          <div className="flex flex-col h-full overflow-y-auto p-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">
-              {character.name}
-            </h2>
+          <div className="flex flex-col h-full overflow-y-auto p-6">
+            <div className="text-center mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400">
+                {character.name}
+              </h2>
+            </div>
             
-            <div className="mb-6">
-              <div className="relative overflow-hidden rounded-xl mb-4 max-w-xs mx-auto md:mx-0">
+            <div className="flex items-center justify-center mb-8">
+              <div className="relative overflow-hidden rounded-xl w-3/4 mx-auto">
                 <img 
                   src={character.imageSrc} 
                   alt={character.name}
@@ -171,23 +179,25 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
             </div>
             
             <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-purple-500/20">
-              <h3 className="text-xl font-semibold text-blue-300 mb-2">О персонаже</h3>
+              <h3 className="text-xl font-semibold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">
+                About character
+              </h3>
               <p className="text-white/80 mb-4">
-                {character.name} — уникальный персонаж с особой энергией и неповторимым стилем.
-                Откройте для себя мир видео с участием {character.name} и погрузитесь в увлекательное приключение!
+                {character.name} is a unique character with special energy and distinctive style.
+                Discover the world of videos featuring {character.name} and immerse yourself in an exciting adventure!
               </p>
               
-              <div className="flex gap-2 flex-wrap">
+              <div className="flex gap-2 flex-wrap justify-center">
                 <span className="bg-purple-500/20 text-purple-200 px-3 py-1 rounded-full text-sm">#tiktok</span>
                 <span className="bg-blue-500/20 text-blue-200 px-3 py-1 rounded-full text-sm">#viral</span>
                 <span className="bg-pink-500/20 text-pink-200 px-3 py-1 rounded-full text-sm">#{character.name.toLowerCase().replace(/\s+/g, '')}</span>
               </div>
             </div>
             
-            <div className="mt-auto pt-4">
+            <div className="mt-auto pt-6">
               <div className="text-center">
                 <p className="text-white/60 text-sm">
-                  Нажмите в любом месте за пределами окна, чтобы закрыть
+                  Click anywhere outside the window to close
                 </p>
               </div>
             </div>
