@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from "@/components/ui/card";
 import VideoPlayer from '@/components/VideoPlayer';
+import CharacterResult from '@/components/CharacterResult';
 import CharacterCard, { Character } from '@/components/CharacterCard';
 import Header from '@/components/Header';
 import characters from '@/data/characters';
@@ -8,6 +9,7 @@ import characters from '@/data/characters';
 const Index = () => {
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
   const [showVideo, setShowVideo] = useState(false);
+  const [showResult, setShowResult] = useState(false);
   const [videoKey, setVideoKey] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -15,10 +17,20 @@ const Index = () => {
     setSelectedCharacter(character);
     setVideoKey(prev => prev + 1);
     setShowVideo(true);
+    setShowResult(false);
   };
 
   const handleCloseVideo = () => {
     setShowVideo(false);
+  };
+
+  const handleContinueToResult = () => {
+    setShowVideo(false);
+    setShowResult(true);
+  };
+
+  const handleCloseResult = () => {
+    setShowResult(false);
   };
 
   const getVideoSrc = (characterId: string) => {
@@ -93,6 +105,14 @@ const Index = () => {
             videoSrc={getVideoSrc(selectedCharacter.id)}
             character={selectedCharacter}
             onClose={handleCloseVideo}
+            onContinue={handleContinueToResult}
+          />
+        )}
+
+        {selectedCharacter && showResult && (
+          <CharacterResult
+            character={selectedCharacter}
+            onClose={handleCloseResult}
           />
         )}
       </main>

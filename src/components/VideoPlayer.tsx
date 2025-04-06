@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Play, Pause, RotateCcw, X } from "lucide-react";
 import { Character } from './CharacterCard';
+import CharacterAnalysis from './CharacterAnalysis';
 
 interface VideoPlayerProps {
   videoSrc: string;
@@ -65,6 +66,7 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [progress, setProgress] = React.useState(0);
+  const [showAnalysis, setShowAnalysis] = useState(false);
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -147,9 +149,22 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
     togglePlay();
   };
 
+  const handleContinue = () => {
+    setShowAnalysis(true);
+  };
+
+  const handleCloseAnalysis = () => {
+    setShowAnalysis(false);
+    onClose();
+  };
+
   // Get character-specific description and TikTok URL
   const characterDescription = getCharacterDescription(character);
   const tiktokUrl = getTikTokUrl(character);
+
+  if (showAnalysis) {
+    return <CharacterAnalysis character={character} onClose={handleCloseAnalysis} />;
+  }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-6" onClick={handleBackdropClick}>
@@ -257,7 +272,7 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
               </a>
               <Button
                 className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-2 px-6 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 border-2 border-blue-400/30"
-                onClick={onClose}
+                onClick={handleContinue}
               >
                 Continue
               </Button>
