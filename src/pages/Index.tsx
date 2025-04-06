@@ -163,7 +163,7 @@ const Index = () => {
         {/* Solana Contract and Social Media Links Footer */}
         <div className="mt-16 mb-8 w-full">
           <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-blue-500/20 max-w-3xl mx-auto transition-all duration-300 hover:bg-black/40 hover:border-blue-500/30 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4">
               <div className="flex items-center gap-2">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500 font-semibold">CA:</span>
                 <div className="flex items-center bg-black/50 rounded-md px-3 py-1.5 border border-blue-500/20 group transition-all duration-300 hover:bg-black/70 hover:border-blue-500/40">
@@ -173,12 +173,12 @@ const Index = () => {
                 </div>
               </div>
               
-              <div className="flex items-center gap-4">
+              <div className="flex items-center ml-4">
                 <a 
                   href="https://t.me/your_telegram_channel" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="transition-transform duration-300 hover:scale-110"
+                  className="transition-transform duration-300 hover:scale-110 mx-2"
                 >
                   <TelegramIcon className="w-8 h-8" />
                 </a>
@@ -187,7 +187,7 @@ const Index = () => {
                   href="https://x.com/your_twitter_handle" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-blue-400 transition-transform duration-300 hover:scale-110 hover:text-blue-300"
+                  className="text-blue-400 transition-transform duration-300 hover:scale-110 hover:text-blue-300 mx-2"
                 >
                   <XIcon className="w-7 h-7" />
                 </a>
