@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { cn } from "@/lib/utils";
 
@@ -56,7 +55,7 @@ const CharacterCard = ({ character, isSelected, onClick }: CharacterCardProps) =
         )}>
           <div className="relative overflow-hidden">
             <h3 className={cn(
-              "text-xl font-bold mb-1",
+              "text-xl font-bold mb-1 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500",
               "transform transition-all duration-500",
               isHovering && "translate-y-0"
             )}>

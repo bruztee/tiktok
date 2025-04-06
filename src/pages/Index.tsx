@@ -21,13 +21,6 @@ const Index = () => {
     setShowVideo(false);
   };
 
-  // Auto-select first character on first load
-  useEffect(() => {
-    if (characters.length > 0 && !selectedCharacter) {
-      setSelectedCharacter(characters[0]);
-    }
-  }, []);
-
   const getVideoSrc = (characterId: string) => {
     // Map character IDs to their respective video files
     switch (characterId) {

@@ -10,6 +10,30 @@ interface VideoPlayerProps {
   onClose: () => void;
 }
 
+// Function to get custom description for each character
+const getCharacterDescription = (character: Character): string => {
+  switch (character.id) {
+    case '1':
+      return `${character.name} is a ferocious crocodile that merged with an aircraft. This iconic bomber patrols the skies with deadly precision, dropping explosive surprises on unsuspecting targets below. Its metallic skin and powerful propellers make it an unstoppable force in both air and water.`;
+    case '2':
+      return `${character.name} is a shark with style! Sporting the latest blue sneakers, this fashionable predator walks on land as confidently as it swims in the ocean. Fast, trendy, and always ready to race - don't be fooled by the athletic appearance, those teeth are still razor-sharp!`;
+    case '3':
+      return `${character.name} is a time-traveling desert elephant wearing sandals and surrounded by floating clocks. This philosophical pachyderm manipulates time and space while wandering through surreal landscapes. The cactus companion is just one of many strange phenomena that follow this mystical creature.`;
+    case '4':
+      return `${character.name} is the ultimate fusion of primate and fruit! This monkey has evolved to wear its banana as both fashion statement and protective shell. With vibrant green fur and striking red features, it's become a jungle celebrity and a symbol of the unexpected harmony between animals and their food.`;
+    case '5':
+      return `${character.name} is a psychedelic feline with vibrant fur that radiates hypnotic energy. This cosmic cat appears to exist between dimensions, with colors that shift and pulse according to its mood. Those who stare too long into its eyes often report strange visions and an inexplicable craving for tuna.`;
+    case '6':
+      return `${character.name} is a disturbingly cheerful anthropomorphic sausage that lurks in urban environments. With its unsettling grin and humanoid form, this hotdog horror has become an internet sensation. Despite its creepy appearance, it's actually quite friendly - though people rarely stick around long enough to discover this.`;
+    case '7':
+      return `${character.name} is a bizarre hybrid of crocodile and pineapple, combining reptilian ferocity with tropical sweetness. This fruit-reptile monstrosity prowls beaches and fruit stands with equal comfort. Its pineapple scales provide natural armor, while its snapping jaws can bite through coconuts and unwary tourists alike.`;
+    case '8':
+      return `${character.name} is a cosmic bovine entity that has merged with the rings of Saturn. This celestial cow floats above city streets, observing humanity with otherworldly wisdom. Neither fully cow nor planet, this galactic guardian protects the universe's dairy supply and occasionally abducts farmers for mysterious "milk meetings."`;
+    default:
+      return `${character.name} is a unique character with special energy and distinctive style. Discover the world of videos featuring ${character.name} and immerse yourself in an exciting adventure!`;
+  }
+};
+
 const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = React.useState(false);
@@ -95,6 +119,9 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
     e.stopPropagation();
     togglePlay();
   };
+
+  // Get character-specific description
+  const characterDescription = getCharacterDescription(character);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-6" onClick={handleBackdropClick}>
@@ -183,18 +210,25 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
                 About character
               </h3>
               <p className="text-white/80 mb-4">
-                {character.name} is a unique character with special energy and distinctive style.
-                Discover the world of videos featuring {character.name} and immerse yourself in an exciting adventure!
+                {characterDescription}
               </p>
-              
-              <div className="flex gap-2 flex-wrap justify-center">
-                <span className="bg-purple-500/20 text-purple-200 px-3 py-1 rounded-full text-sm">#tiktok</span>
-                <span className="bg-blue-500/20 text-blue-200 px-3 py-1 rounded-full text-sm">#viral</span>
-                <span className="bg-pink-500/20 text-pink-200 px-3 py-1 rounded-full text-sm">#{character.name.toLowerCase().replace(/\s+/g, '')}</span>
-              </div>
             </div>
             
-            <div className="mt-auto pt-6">
+            <div className="mt-auto pt-6 flex justify-center gap-4">
+              <Button
+                className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-2 px-6 rounded-full shadow-lg shadow-purple-500/30 transition-all duration-300 border-2 border-pink-400/30"
+              >
+                TikTok
+              </Button>
+              <Button
+                className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-2 px-6 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 border-2 border-blue-400/30"
+                onClick={onClose}
+              >
+                Continue
+              </Button>
+            </div>
+            
+            <div className="mt-4">
               <div className="text-center">
                 <p className="text-white/60 text-sm">
                   Click anywhere outside the window to close
