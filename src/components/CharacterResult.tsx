@@ -64,7 +64,6 @@ const CharacterResult = ({ character, onClose }: CharacterResultProps) => {
                 alt={character.name}
                 className="w-full h-auto rounded-xl shadow-2xl border-2 border-purple-500/30 transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl transition-opacity duration-300 group-hover:opacity-50"></div>
               
               {/* Decorative elements */}
               <div className="absolute -z-10 top-10 left-10 w-full h-full bg-gradient-to-br from-purple-500/30 to-pink-500/20 rounded-xl blur-xl transform -rotate-6 transition-all duration-500 group-hover:scale-110 group-hover:blur-lg group-hover:from-blue-500/40 group-hover:to-indigo-500/30"></div>

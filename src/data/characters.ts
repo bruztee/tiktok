@@ -33,7 +33,7 @@ const characters: Character[] = [
   },
   {
     id: '7',
-    name: 'Crocodildo Penisini',
+    name: 'Crocodildo Penissini',
     imageSrc: '/characters/crocodildo.jpg',
   },
   {
