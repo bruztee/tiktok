@@ -34,6 +34,33 @@ const getCharacterDescription = (character: Character): string => {
   }
 };
 
+// Function to get TikTok URL for each character
+const getTikTokUrl = (character: Character): string => {
+  const baseUrl = "https://www.tiktok.com/discover/";
+  
+  switch (character.id) {
+    case '1':
+      return `${baseUrl}crocodilo-bombardiro`;
+    case '2':
+      return `${baseUrl}tralalelo-tralala`;
+    case '3':
+      return `${baseUrl}lirili-larila`;
+    case '4':
+      return `${baseUrl}chimpazini-bananini`;
+    case '5':
+      return `${baseUrl}trippi-troppi`;
+    case '6':
+      return `${baseUrl}tuc-tuc-tuc-tuc-sahur`;
+    case '7':
+      return `${baseUrl}crocodilo-penicillin`;
+    case '8':
+      return `${baseUrl}la-vaca-saturno-saturnita`;
+    default:
+      // Default case for any future characters
+      return `${baseUrl}${character.name.toLowerCase().replace(/\s+/g, '-')}`;
+  }
+};
+
 const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = React.useState(false);
@@ -120,8 +147,9 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
     togglePlay();
   };
 
-  // Get character-specific description
+  // Get character-specific description and TikTok URL
   const characterDescription = getCharacterDescription(character);
+  const tiktokUrl = getTikTokUrl(character);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-6" onClick={handleBackdropClick}>
@@ -215,11 +243,18 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
             </div>
             
             <div className="mt-auto pt-6 flex justify-center gap-4">
-              <Button
-                className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-2 px-6 rounded-full shadow-lg shadow-purple-500/30 transition-all duration-300 border-2 border-pink-400/30"
+              <a 
+                href={tiktokUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block"
               >
-                TikTok
-              </Button>
+                <Button
+                  className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-2 px-6 rounded-full shadow-lg shadow-purple-500/30 transition-all duration-300 border-2 border-pink-400/30"
+                >
+                  TikTok
+                </Button>
+              </a>
               <Button
                 className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-2 px-6 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 border-2 border-blue-400/30"
                 onClick={onClose}
