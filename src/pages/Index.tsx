@@ -12,28 +12,13 @@ const Index = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleCharacterSelect = (character: Character) => {
-    // Если выбираем того же персонажа, который уже выбран, то переключаем видео
-    if (selectedCharacter?.id === character.id) {
-      if (showVideo) {
-        setShowVideo(false);
-      } else {
-        setIsLoading(true);
-        setVideoKey(prev => prev + 1);
-        setShowVideo(true);
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 500);
-      }
-    } else {
-      // Если выбираем нового персонажа
-      setSelectedCharacter(character);
-      setIsLoading(true);
-      setVideoKey(prev => prev + 1);
-      setShowVideo(true);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 500);
-    }
+    setSelectedCharacter(character);
+    setVideoKey(prev => prev + 1);
+    setShowVideo(true);
+  };
+
+  const handleCloseVideo = () => {
+    setShowVideo(false);
   };
 
   // Auto-select first character on first load
@@ -44,7 +29,28 @@ const Index = () => {
   }, []);
 
   const getVideoSrc = (characterId: string) => {
-    return `/videos/${characterId}.mp4`;
+    // Map character IDs to their respective video files
+    switch (characterId) {
+      case '1':
+        return '/videos/bombardiro.mp4';
+      case '2':
+        return '/videos/tralalelo.mp4';
+      case '3':
+        return '/videos/lirili.mp4';
+      case '4':
+        return '/videos/chimpanzini.mp4';
+      case '5':
+        return '/videos/trippitroppi.mp4';
+      case '6':
+        return '/videos/tuctuctuc.mp4';
+      case '7':
+        return '/videos/crocodildo.mp4';
+      case '8':
+        return '/videos/lavacca.mp4';
+      default:
+        // For characters without specific videos, use bombardiro as fallback
+        return '/videos/bombardiro.mp4';
+    }
   };
 
   return (
@@ -74,9 +80,7 @@ const Index = () => {
       
       <main className="container mx-auto p-4 pt-12 relative z-10">
         <h2 className="text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">
-          {!selectedCharacter 
-            ? "Выберите персонажа!"
-            : `${selectedCharacter.name}`}
+          Выберите персонажа!
         </h2>
         
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-12">
@@ -90,14 +94,13 @@ const Index = () => {
           ))}
         </div>
 
-        {selectedCharacter && showVideo && !isLoading && (
-          <div className="mt-8 w-full max-w-lg mx-auto animate-fade-in">
-            <VideoPlayer 
-              key={videoKey}
-              videoSrc={getVideoSrc(selectedCharacter.id)}
-              characterName={selectedCharacter.name}
-            />
-          </div>
+        {selectedCharacter && showVideo && (
+          <VideoPlayer 
+            key={videoKey}
+            videoSrc={getVideoSrc(selectedCharacter.id)}
+            character={selectedCharacter}
+            onClose={handleCloseVideo}
+          />
         )}
       </main>
       

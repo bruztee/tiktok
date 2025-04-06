@@ -38,7 +38,7 @@ const characters: Character[] = [
   },
   {
     id: '8',
-    name: 'Labacka Saturnito',
+    name: 'La Vacca Saturno Saturnita',
     imageSrc: '/characters/saturnito.jpg',
   },
 ];
