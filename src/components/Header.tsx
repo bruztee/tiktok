@@ -25,7 +25,7 @@ const Header = () => {
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-400">character</span>
             </h1>
             <p className="text-white/80 text-lg md:text-xl mt-3 max-w-xl mx-auto font-medium">
-              Выберите своего героя для эпического приключения
+              Be ready to rot your brain!
             </p>
           </div>
           

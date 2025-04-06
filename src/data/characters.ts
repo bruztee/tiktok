@@ -1,46 +1,45 @@
-
 import { Character } from '@/components/CharacterCard';
 
 const characters: Character[] = [
   {
     id: '1',
     name: 'Bombardiro Crocodilo',
-    imageSrc: '/characters/bombardiro-crocodilo.jpg',
+    imageSrc: '/characters/bombardiro.jpg',
   },
   {
     id: '2',
     name: 'Tralalelo Tralala',
-    imageSrc: '/characters/tralalelo-tralala.jpg',
+    imageSrc: '/characters/Tralalero_tralala.jpg',
   },
   {
     id: '3',
     name: 'Lirili Larila',
-    imageSrc: '/characters/lirili-larila.jpg',
+    imageSrc: '/characters/lirililarila.jpg',
   },
   {
     id: '4',
     name: 'Chimpanzini Bananini',
-    imageSrc: '/characters/chimpanzini-bananini.jpg',
+    imageSrc: '/characters/chimpanzini.jpg',
   },
   {
     id: '5',
     name: 'Trippi Troppi',
-    imageSrc: '/characters/trippi-troppi.jpg',
+    imageSrc: '/characters/trippitroppi.jpg',
   },
   {
     id: '6',
     name: 'Tuctuctuc Sahur',
-    imageSrc: '/characters/tuctuctuc-sahur.jpg',
+    imageSrc: '/characters/tuctuctuc.jpg',
   },
   {
     id: '7',
     name: 'Crocodildo Penisini',
-    imageSrc: '/characters/crocodildo-penisini.jpg',
+    imageSrc: '/characters/crocodildo.jpg',
   },
   {
     id: '8',
     name: 'Labacka Saturnito',
-    imageSrc: '/characters/labacka-saturnito.jpg',
+    imageSrc: '/characters/saturnito.jpg',
   },
 ];
 
