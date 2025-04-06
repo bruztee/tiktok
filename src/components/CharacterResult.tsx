@@ -93,10 +93,12 @@ const CharacterResult = ({ character, onClose }: CharacterResultProps) => {
             
             <div className="mt-auto pt-6 flex justify-center">
               <Button
-                className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold py-2 px-8 rounded-full shadow-lg shadow-purple-500/30 transition-all duration-300 border-2 border-indigo-400/30 hover:shadow-[0_0_20px_rgba(99,102,241,0.5)] hover:scale-105"
+                className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 font-bold py-2 px-8 rounded-full shadow-lg shadow-purple-500/30 transition-all duration-300 border-2 border-indigo-400/30 hover:shadow-[0_0_20px_rgba(99,102,241,0.5)] hover:scale-105"
                 onClick={onClose}
               >
-                Back to Characters
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400">
+                  Back to Characters
+                </span>
               </Button>
             </div>
           </div>

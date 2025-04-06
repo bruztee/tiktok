@@ -286,17 +286,21 @@ const VideoPlayer = ({ videoSrc, character, onClose, onContinue }: VideoPlayerPr
                 className="inline-block transition-transform duration-300 hover:scale-105"
               >
                 <Button
-                  className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-2 px-6 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 border-2 border-blue-400/30 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] flex items-center gap-2"
+                  className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 font-bold py-2 px-6 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 border-2 border-blue-400/30 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] flex items-center gap-2"
                 >
-                  <TikTokIcon className="w-5 h-5" />
-                  TikTok
+                  <TikTokIcon className="w-5 h-5 text-white" />
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400">
+                    TikTok
+                  </span>
                 </Button>
               </a>
               <Button
-                className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-2 px-6 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 border-2 border-blue-400/30 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] hover:scale-105"
+                className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 font-bold py-2 px-6 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 border-2 border-blue-400/30 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] hover:scale-105"
                 onClick={handleContinue}
               >
-                Reveal My Personality
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400">
+                  Reveal My Personality
+                </span>
               </Button>
             </div>
             
