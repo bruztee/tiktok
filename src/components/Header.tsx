@@ -18,7 +18,7 @@ const Header = () => {
             <div className="relative inline-block animate-pulse">
               <div className="absolute -inset-6 bg-indigo-600 blur-md opacity-50 animate-ping rounded-full"></div>
               <h1 className="text-4xl md:text-6xl font-black tracking-tighter pb-2 drop-shadow-[0_2px_20px_rgba(138,43,226,0.5)] relative bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400">
-                Choose your fighter
+                Who Am I TikTok
               </h1>
             </div>
           </div>

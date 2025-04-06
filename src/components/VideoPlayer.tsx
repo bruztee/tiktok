@@ -3,12 +3,13 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Play, Pause, RotateCcw, X } from "lucide-react";
 import { Character } from './CharacterCard';
-import CharacterAnalysis from './CharacterAnalysis';
+import CharacterResult from './CharacterResult';
 
 interface VideoPlayerProps {
   videoSrc: string;
   character: Character;
   onClose: () => void;
+  onContinue?: () => void;
 }
 
 // Function to get custom description for each character
@@ -62,11 +63,11 @@ const getTikTokUrl = (character: Character): string => {
   }
 };
 
-const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
+const VideoPlayer = ({ videoSrc, character, onClose, onContinue }: VideoPlayerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [progress, setProgress] = React.useState(0);
-  const [showAnalysis, setShowAnalysis] = useState(false);
+  const [showResult, setShowResult] = useState(false);
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -150,11 +151,15 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
   };
 
   const handleContinue = () => {
-    setShowAnalysis(true);
+    if (onContinue) {
+      onContinue();
+    } else {
+      setShowResult(true);
+    }
   };
 
-  const handleCloseAnalysis = () => {
-    setShowAnalysis(false);
+  const handleCloseResult = () => {
+    setShowResult(false);
     onClose();
   };
 
@@ -162,8 +167,8 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
   const characterDescription = getCharacterDescription(character);
   const tiktokUrl = getTikTokUrl(character);
 
-  if (showAnalysis) {
-    return <CharacterAnalysis character={character} onClose={handleCloseAnalysis} />;
+  if (showResult) {
+    return <CharacterResult character={character} onClose={handleCloseResult} />;
   }
 
   return (
@@ -181,10 +186,10 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
         <div className="grid grid-cols-1 md:grid-cols-2 h-full max-h-[90vh] overflow-auto">
           {/* Left side - Video */}
           <div className="relative h-full flex items-center justify-center">
-            <div className="w-full h-full relative flex items-center">
+            <div className="w-full h-full relative flex items-center group transition-all duration-500">
               <video 
                 ref={videoRef}
-                className="w-full h-auto max-h-[80vh] object-cover cursor-pointer"
+                className="w-full h-auto max-h-[80vh] object-cover cursor-pointer transition-all duration-500 group-hover:brightness-110"
                 playsInline
                 onClick={handleVideoClick}
               >
@@ -194,8 +199,9 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
               
               {/* Lighting effect over video */}
               <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/10 to-transparent mix-blend-overlay"></div>
-                <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-black/40 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/10 to-transparent mix-blend-overlay transition-opacity duration-300 group-hover:opacity-70"></div>
+                <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-black/40 to-transparent transition-opacity duration-300 group-hover:opacity-60"></div>
+                <div className="absolute inset-0 opacity-0 bg-gradient-to-r from-blue-500/0 to-indigo-500/0 transition-all duration-500 group-hover:from-blue-500/10 group-hover:to-indigo-500/10"></div>
               </div>
             </div>
             
@@ -205,7 +211,7 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
                   onClick={togglePlay}
                   variant="outline"
                   size="icon"
-                  className="bg-purple-500/20 hover:bg-purple-500/40 text-white border-white/20 backdrop-blur-sm rounded-full"
+                  className="bg-purple-500/20 hover:bg-purple-500/40 text-white border-white/20 backdrop-blur-sm rounded-full transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)]"
                 >
                   {isPlaying ? <Pause size={20} /> : <Play size={20} />}
                 </Button>
@@ -214,14 +220,14 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
                   onClick={restartVideo}
                   variant="outline"
                   size="icon"
-                  className="bg-purple-500/20 hover:bg-purple-500/40 text-white border-white/20 backdrop-blur-sm rounded-full"
+                  className="bg-purple-500/20 hover:bg-purple-500/40 text-white border-white/20 backdrop-blur-sm rounded-full transition-transform duration-300 hover:scale-110 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)]"
                 >
                   <RotateCcw size={20} />
                 </Button>
                 
-                <div className="relative flex-1 h-2 bg-white/20 rounded-full overflow-hidden">
+                <div className="relative flex-1 h-2 bg-white/20 rounded-full overflow-hidden group">
                   <div 
-                    className="absolute left-0 top-0 h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
+                    className="absolute left-0 top-0 h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full group-hover:from-blue-400 group-hover:to-indigo-400 transition-colors duration-300"
                     style={{ width: `${progress}%` }}
                   />
                 </div>
@@ -238,21 +244,22 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
             </div>
             
             <div className="flex items-center justify-center mb-8">
-              <div className="relative overflow-hidden rounded-xl w-3/4 mx-auto">
+              <div className="relative overflow-hidden rounded-xl w-3/4 mx-auto group transition-all duration-300 hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] transform hover:-translate-y-1">
                 <img 
                   src={character.imageSrc} 
                   alt={character.name}
-                  className="w-full h-auto rounded-xl shadow-lg border-2 border-purple-500/30"
+                  className="w-full h-auto rounded-xl shadow-lg border-2 border-purple-500/30 transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 group-hover:opacity-70"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-indigo-500/0 transition-all duration-500 group-hover:from-blue-500/10 group-hover:to-indigo-500/20 rounded-xl"></div>
               </div>
             </div>
             
-            <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-purple-500/20">
+            <div className="bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-purple-500/20 transition-all duration-300 hover:bg-black/40 hover:border-blue-500/30 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]">
               <h3 className="text-xl font-semibold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">
-                About character
+                Meet your TikTok animal
               </h3>
-              <p className="text-white/80 mb-4">
+              <p className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-300 to-blue-400 mb-4">
                 {characterDescription}
               </p>
             </div>
@@ -262,25 +269,25 @@ const VideoPlayer = ({ videoSrc, character, onClose }: VideoPlayerProps) => {
                 href={tiktokUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block"
+                className="inline-block transition-transform duration-300 hover:scale-105"
               >
                 <Button
-                  className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-2 px-6 rounded-full shadow-lg shadow-purple-500/30 transition-all duration-300 border-2 border-pink-400/30"
+                  className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-2 px-6 rounded-full shadow-lg shadow-purple-500/30 transition-all duration-300 border-2 border-pink-400/30 hover:shadow-[0_0_20px_rgba(219,39,119,0.5)]"
                 >
                   TikTok
                 </Button>
               </a>
               <Button
-                className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-2 px-6 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 border-2 border-blue-400/30"
+                className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-2 px-6 rounded-full shadow-lg shadow-blue-500/30 transition-all duration-300 border-2 border-blue-400/30 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] hover:scale-105"
                 onClick={handleContinue}
               >
-                Continue
+                Reveal My Personality
               </Button>
             </div>
             
             <div className="mt-4">
               <div className="text-center">
-                <p className="text-white/60 text-sm">
+                <p className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500 text-sm">
                   Click anywhere outside the window to close
                 </p>
               </div>

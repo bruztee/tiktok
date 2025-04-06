@@ -62,7 +62,7 @@ const CharacterCard = ({ character, isSelected, onClick }: CharacterCardProps) =
               {character.name}
             </h3>
             <div className={cn(
-              "h-1 w-0 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full",
+              "h-1 w-0 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full",
               "transform transition-all duration-700 ease-out",
               (isHovering || isSelected) && "w-full"
             )}></div>

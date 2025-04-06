@@ -85,8 +85,12 @@ const Index = () => {
       
       <main className="container mx-auto p-4 pt-12 pb-20 relative z-10">
         <h2 className="text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">
-          Who you like most?
+          Choose your TikTok animal
         </h2>
+        
+        <p className="text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500 text-lg font-medium max-w-3xl mx-auto mb-8">
+          Select the character that resonates with you the most to reveal insights about your personality!
+        </p>
         
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-12">
           {characters.map(character => (

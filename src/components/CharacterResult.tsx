@@ -17,19 +17,19 @@ const getPersonalityAssessment = (character: Character): string => {
     case '2':
       return `Tralalelo Tralala - a choice of punks and those who know their worth. Yes, his lines are sometimes controversial, but they exude a genuine rebellious spirit. If you respect yourself, the choice between Tralalelo and Bombardiro is obvious - and it's not in favor of the latter.`;
     case '3':
-      return `Lirili Larila - our dark horse and hidden favorite. Will still show what they're made of, we're sure of it. Currently remains in the shadow of the first two, but all in good time. We advise keeping an eye on this one - there's something special here, too early to underestimate.`;
+      return `Lirili Larila - the choice of people who can't make up their damn minds. "Ooh, I'm not picking the popular ones, I'm so special!" Get over yourself. You probably stand in line at Starbucks for 10 minutes and then order a plain black coffee. Not brave enough to pick something weird, not basic enough to embrace the mainstream. Just stuck in mediocrity purgatory.`;
     case '4':
-      return `Chimpanzini Bananini - chosen by creative souls and free thinkers. While others chase the obvious, you appreciate the absurd fusion of primate and fruit. Your sense of humor operates on multiple levels, and conventional boundaries mean nothing to you. The banana hat represents your ability to transform the ordinary into extraordinary.`;
+      return `Chimpanzini Bananini - seriously? The banana monkey? Congratulations on having the sense of humor of a sleep-deprived 5-year-old. "Look mom, he's wearing fruit as a hat!" You probably laugh at fart jokes and think putting pineapple on pizza is the height of culinary rebellion. Your friends tolerate your jokes the same way they tolerate a persistent cough - by hoping it eventually goes away.`;
     case '5':
-      return `Trippi Troppi - the favorite of psychonauts, dreamers, and modern artists. You're drawn to vibrant experiences and frequently question reality. Conventional thinking bores you, and you're always searching for new perspectives. People might call you weird, but that's just because they haven't expanded their minds like you have.`;
+      return `Trippi Troppi - ah yes, the "I do drugs" personality. Let me guess, you've got a tapestry on your wall, own at least three items with mushrooms on them, and think having a dream about flying means you're spiritually enlightened. You've definitely cornered someone at a party to explain why crystals have healing properties. The cat isn't even that psychedelic - you're just too easily impressed.`;
     case '6':
-      return `Tuctuctuc Sahur - preferred by those with a twisted sense of humor and an appreciation for the uncanny. You delight in making others uncomfortable and find beauty in the bizarre. Your friends never know what to expect from you, and that's exactly how you like it. Your ability to embrace the unsettling speaks to your fearless approach to life.`;
+      return `Tuctuctuc Sahur - picking the creepy sausage monster, huh? You're the kind of person who thinks being weird is a substitute for having an actual personality. "I'm so random and dark!" No, you're just desperate for attention. You probably wear mismatched socks on purpose and think liking horror movies makes you deep. Even the sausage is embarrassed to be associated with you.`;
     case '7':
-      return `Crocodildo Penisini - selected by provocateurs and those who reject social norms. You love pushing boundaries and challenging taboos just to see reactions. Conventional wisdom means nothing to you, and you take pleasure in subverting expectations. Your friends both admire and fear your unpredictable nature and unwillingness to conform.`;
+      return `Crocodildo Penisini - wow, real mature. You picked the one with the suggestive name because deep down, you're still a 13-year-old giggling at anatomy textbooks. You think you're edgy, but you're about as edgy as a sphere. Your sense of humor hasn't evolved since middle school, and it shows. Even your friends cringe when you start telling jokes - they're just too polite to say anything.`;
     case '8':
-      return `La Vacca Saturno Saturnita - chosen by philosophers and cosmic thinkers. You see connections others miss and often contemplate your place in the universe. While grounded in everyday reality, part of you always floats in higher realms of thought. Friends value your unique perspective but sometimes wish you'd stop talking about the mysteries of existence at casual gatherings.`;
+      return `La Vacca Saturno Saturnita - the pretentious pseudo-intellectual's choice. You definitely use words like "juxtaposition" and "paradigm" in casual conversation just to sound smart. You've started at least three philosophy books and finished none of them, but still quote them anyway. You think being confused is the same as being profound. It's a cow with planetary rings, not a dissertation on existentialism. Get over yourself.`;
     default:
-      return `This character reveals your unique personality that defies conventional categorization. Your choices tend to surprise others, and you follow your own internal compass rather than external expectations. Whether this makes you visionary or just stubborn is for history to decide.`;
+      return `You couldn't even pick one of the main characters? What are you, too special for our silly little test? You probably order off-menu at restaurants and then complain when it's not exactly what you wanted. Being contrarian isn't a personality trait, it's just annoying. Next time just pick a damn animal like everyone else.`;
   }
 };
 
@@ -58,40 +58,42 @@ const CharacterResult = ({ character, onClose }: CharacterResultProps) => {
         <div className="grid grid-cols-1 md:grid-cols-2 h-full max-h-[90vh] overflow-auto">
           {/* Left side - Character Image */}
           <div className="relative h-full flex items-center justify-center p-6">
-            <div className="relative w-full max-w-md">
+            <div className="relative w-full max-w-md group transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(79,70,229,0.5)]">
               <img 
                 src={character.imageSrc} 
                 alt={character.name}
-                className="w-full h-auto rounded-xl shadow-2xl border-2 border-purple-500/30"
+                className="w-full h-auto rounded-xl shadow-2xl border-2 border-purple-500/30 transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-xl transition-opacity duration-300 group-hover:opacity-50"></div>
               
               {/* Decorative elements */}
-              <div className="absolute -z-10 top-10 left-10 w-full h-full bg-gradient-to-br from-purple-500/30 to-pink-500/20 rounded-xl blur-xl transform -rotate-6"></div>
-              <div className="absolute -z-10 -bottom-5 -right-5 w-3/4 h-3/4 bg-gradient-to-tr from-blue-500/30 to-indigo-500/20 rounded-xl blur-xl transform rotate-12"></div>
+              <div className="absolute -z-10 top-10 left-10 w-full h-full bg-gradient-to-br from-purple-500/30 to-pink-500/20 rounded-xl blur-xl transform -rotate-6 transition-all duration-500 group-hover:scale-110 group-hover:blur-lg group-hover:from-blue-500/40 group-hover:to-indigo-500/30"></div>
+              <div className="absolute -z-10 -bottom-5 -right-5 w-3/4 h-3/4 bg-gradient-to-tr from-blue-500/30 to-indigo-500/20 rounded-xl blur-xl transform rotate-12 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6"></div>
+              
+              <div className="absolute inset-0 opacity-0 bg-gradient-to-r from-blue-500/0 to-indigo-500/0 transition-all duration-500 group-hover:from-blue-500/10 group-hover:to-indigo-500/20 rounded-xl"></div>
             </div>
           </div>
           
           {/* Right side - Personality Assessment */}
           <div className="flex flex-col h-full overflow-y-auto p-6">
             <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 transition-all duration-300 hover:from-blue-300 hover:via-cyan-200 hover:to-blue-300">
                 You chose {character.name}
               </h2>
             </div>
             
-            <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-purple-500/20">
-              <h3 className="text-xl font-semibold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">
+            <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-purple-500/20 transition-all duration-300 hover:bg-black/40 hover:border-blue-500/30 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+              <h3 className="text-xl font-semibold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500 transition-all duration-300 hover:from-blue-300 hover:to-indigo-400">
                 What this says about you:
               </h3>
-              <p className="text-white/90 text-lg leading-relaxed mb-4">
+              <p className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-300 to-blue-400 text-lg leading-relaxed mb-4 transition-all duration-300 hover:from-blue-300 hover:via-indigo-200 hover:to-blue-300">
                 {assessment}
               </p>
             </div>
             
             <div className="mt-auto pt-6 flex justify-center">
               <Button
-                className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold py-2 px-8 rounded-full shadow-lg shadow-purple-500/30 transition-all duration-300 border-2 border-indigo-400/30"
+                className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold py-2 px-8 rounded-full shadow-lg shadow-purple-500/30 transition-all duration-300 border-2 border-indigo-400/30 hover:shadow-[0_0_20px_rgba(99,102,241,0.5)] hover:scale-105"
                 onClick={onClose}
               >
                 Back to Characters
