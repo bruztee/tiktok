@@ -40,8 +40,9 @@ const Header = () => {
               <div className="flex items-center gap-3">
                 <TikTokIcon className="w-10 h-10 md:w-12 md:h-12 animate-float" />
                 <h1 className="text-4xl md:text-6xl font-black tracking-tighter pb-2 drop-shadow-[0_2px_20px_rgba(138,43,226,0.5)] relative bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400">
-                  Who Am I TikTok
+                  Who Am I
                 </h1>
+                <TikTokIcon className="w-10 h-10 md:w-12 md:h-12 animate-float" />
               </div>
             </div>
           </div>
